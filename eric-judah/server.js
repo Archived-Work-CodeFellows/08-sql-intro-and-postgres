@@ -41,7 +41,7 @@ app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   //This would actually use the full diagram. The user will type in /articles and then the server(controller)
   //will then proceed to ask the database (model) to show us what is in the table
-  client.query('')
+  client.query(`SELECT * FROM articles`)
     .then(function(result) {
       response.send(result.rows);
     })
@@ -52,7 +52,9 @@ app.get('/articles', (request, response) => {
 
 app.post('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // This is interacting with the insertRecord method in the article.js file. This would be using 2 and 3 and 4 of
+  // the diagram. 2 is the request or post, then express send the query into the DB and then the DB sends
+  //feed back saying that it was completed
   client.query(
     `INSERT INTO
     articles(title, author, "authorUrl", category, "publishedOn", body)
