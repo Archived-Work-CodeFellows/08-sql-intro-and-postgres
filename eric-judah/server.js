@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const express = require('express');
+const pg = require('pg');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -9,11 +10,12 @@ const app = express();
 // Windows and Linux users: You should have retained the user/password from the pre-work for this course.
 // Your OS may require that your conString is composed of additional information including user and password.
 // const conString = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
+const dbString = 'postgres://postgres:wow12345@localhost:5432/lab08sql';
 
 // Mac:
 // const conString = 'postgres://localhost:5432/DBNAME';
 
-const client = new pg.Client();
+const client = new pg.Client(dbString);
 
 // REVIEW: Use the client object to connect to our DB.
 client.connect();
@@ -21,14 +23,15 @@ client.connect();
 
 // REVIEW: Install the middleware plugins so that our app can parse the request body
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:true}));
 app.use(express.static('./public'));
 
 
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js, if any, is interacting with this particular piece of `server.js`? What part of CRUD, if any, is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  //This would correspond to the numbers 2 and 5. The client will type in the url /new
+  //and the server will then serve up a respond with the appropriate file we have chosen
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -36,7 +39,8 @@ app.get('/new', (request, response) => {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  //This would actually use the full diagram. The user will type in /articles and then the server(controller)
+  //will then proceed to ask the database (model) to show us what is in the table
   client.query('')
     .then(function(result) {
       response.send(result.rows);

@@ -16,7 +16,7 @@
 <!-- Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples: -->
 
 04-04-2018 5:45pm : Set up repo and code-base
-04-04-2018 5:45pm : Set up repo and code-base
+04-04-2018 6:25pm : Connected express to the sql database, and table was created
 04-04-2018 5:45pm : Set up repo and code-base
 04-04-2018 5:45pm : Set up repo and code-base
 04-04-2018 5:45pm : Set up repo and code-base
