@@ -17,17 +17,17 @@ const dbString = 'postgres://postgres:wow12345@localhost:5432/lab08sql';
 
 const client = new pg.Client(dbString);
 
-// REVIEW: Use the client object to connect to our DB.
+// REVIEWED: Use the client object to connect to our DB.
 client.connect();
 
 
-// REVIEW: Install the middleware plugins so that our app can parse the request body
+// REVIEWED: Install the middleware plugins so that our app can parse the request body
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('./public'));
 
 
-// REVIEW: Routes for requesting HTML resources
+// REVIEWED: Routes for requesting HTML resources
 app.get('/new', (request, response) => {
   // COMMENTED: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js, if any, is interacting with this particular piece of `server.js`? What part of CRUD, if any, is being enacted/managed by this particular piece of code?
   //This would correspond to the numbers 2 and 5. The client will type in the url /new
@@ -36,7 +36,7 @@ app.get('/new', (request, response) => {
 });
 
 
-// REVIEW: Routes for making API calls to use CRUD Operations on our database
+// REVIEWED: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', (request, response) => {
   // COMMENTED: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   //This would actually use the full diagram. The user will type in /articles and then the server(controller)
@@ -86,7 +86,7 @@ app.put('/articles/:id', (request, response) => {
     `UPDATE articles
      SET title=$1, author=$2, "authorUrl"=$3, category=$4, "publishedOn"=$5, body=$6
      WHERE article_id=$7;`,
-     [
+    [
       request.body.title,
       request.body.author,
       request.body.authorUrl,
@@ -94,7 +94,7 @@ app.put('/articles/:id', (request, response) => {
       request.body.publishedOn,
       request.body.body,
       request.params.id
-     ]
+    ]
   )
     .then(() => {
       response.send('update complete')
@@ -105,7 +105,7 @@ app.put('/articles/:id', (request, response) => {
 });
 
 app.delete('/articles/:id', (request, response) => {
-  // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
+  // COMMENTED: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
   // It uses 2-4 on the diagram. The view makes a request to the controller which then queries the model to delete
   // the specific article. Afterwords, it will then send it's result to the controller. This interacts with the deleteRecord()
   // in the article.js file.
@@ -155,7 +155,7 @@ function loadArticles() {
   // populate the table with data and return to us that it has
   client.query('SELECT COUNT(*) FROM articles')
     .then(result => {
-    // REVIEW: result.rows is an array of objects that PostgreSQL returns as a response to a query.
+    // REVIEWED: result.rows is an array of objects that PostgreSQL returns as a response to a query.
     // If there is nothing on the table, then result.rows[0] will be undefined, which will make count undefined. parseInt(undefined) returns NaN. !NaN evaluates to true.
     // Therefore, if there is nothing on the table, the conditional expression will evaluate to true and enter into the code block.
       if(!parseInt(result.rows[0].count)) {

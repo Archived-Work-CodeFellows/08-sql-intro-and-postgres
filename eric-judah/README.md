@@ -20,9 +20,8 @@
 04-04-2018 7:30pm : Looked into more SQL, commented some more
 04-04-2018 8:30pm : Finished server.js commented code
 04-04-2018 8:50pm : Went Through CRUD to test the functions, success
-04-04-2018 5:45pm : Set up repo and code-base
-04-04-2018 5:45pm : Set up repo and code-base
-04-04-2018 5:45pm : Set up repo and code-base 
+04-07-2018 3:33pm : Gone through reviews and comments.
+
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
